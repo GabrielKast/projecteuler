@@ -11,4 +11,5 @@ pb1()->
     pb1(10000).
 
 pb1(N)->
-    seq(1,N-1, 1).
+    L=[X || X <- seq(1,N-1, 1), X rem 3=:=0 orelse X rem 5 =:=0 ],
+    lists:foldr ( fun (X, Sum) -> X+Sum end, 0, L).
