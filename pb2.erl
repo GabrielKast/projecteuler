@@ -9,3 +9,20 @@
 
 -module(pb2).
 -export([pb2/0]).
+
+pb2()-> lists:sum (values(1)).
+
+values(N) -> 
+    Z=fibo(N)
+	if fibo(Z) =< 10 -> [Z | values(N+1) ];
+       _ -> []
+    end.
+
+    
+fibos(1) -> [1];
+fibos(N) ->
+    [fibo(N) | fibos(N-1)].
+
+fibo(0) -> 0 ;
+fibo(1) -> 1 ;	  
+fibo(X)-> fibo(X-1) + fibo(X-2).
