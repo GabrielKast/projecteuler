@@ -8,14 +8,15 @@
 
 
 -module(pb2).
--export([pb2/0]).
+-export([pb2/0, fibos/1]).
 
-pb2()-> lists:sum (values(1)).
+pb2()-> lists:sum(values(1)).
 
 values(N) -> 
-    Z=fibo(N)
-	if fibo(Z) =< 10 -> [Z | values(N+1) ];
-       _ -> []
+    Z=fibo(N),
+    if Z =< 4000000 andalso Z rem 2 =:=0 -> [Z | values(N+1) ];
+       Z =< 4000000  -> values(N+1);
+	   true -> []
     end.
 
     
