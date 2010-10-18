@@ -10,3 +10,7 @@ pb5_test() ->
 %% Check that the 6st prime is 13
 pb7_test() ->
     ?assertEqual(13, pb7:pb7(6)).
+
+%% Check if is_pythagorean seems ok
+pb9_test() ->
+    ?assertEqual(true, pb9:is_pythagorean(3, 4, 5)).
