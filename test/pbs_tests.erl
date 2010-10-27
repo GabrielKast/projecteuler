@@ -1,3 +1,4 @@
+% See http://www.erlang.org/doc/apps/eunit/chapter.html
 % Required 
 % code:add_path("/usr/lib/erlang/lib/eunit-2.1.4/ebin")
 
@@ -14,3 +15,25 @@ pb7_test() ->
 %% Check if is_pythagorean seems ok
 pb9_test() ->
     ?assertEqual(true, pb9:is_pythagorean(3, 4, 5)).
+
+%% checks the sample given by pb10 : sum of prime from 2 to 10 is 2+3+5+7=17
+pb10_test()->
+    ?assertEqual(17, pb10:pb10(10)),
+    ?assertEqual(142913828922,  pb10:pb10()),
+    ?assertEqual(142913828922,  pb10:pb10_v2(2000000)) .
+
+receive_results_test()->
+    Pid_acc = spawn(pb10, receive_results, [self(), [], 0, 0] ),
+    Pid_acc ! {totalnumber, 5},
+    Pid_acc ! {isprime, 2},
+    Pid_acc ! {isprime, 3},
+    Pid_acc ! {isprime, 5},
+    Pid_acc ! {isprime, 7},
+    Pid_acc ! {notprime, 9},
+    receive
+	List ->
+	    io:format("Reception de la liste : ~p~n", [List]),
+	    ?assertEqual(17, lists:sum(List))
+    end.
+
+    

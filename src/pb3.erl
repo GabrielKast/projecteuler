@@ -44,6 +44,3 @@ is_divisible(N, X) ->
        N > X*X -> is_divisible(N, X+2);
        true -> false
     end.
-
-
-
