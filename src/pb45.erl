@@ -36,10 +36,9 @@ search({IndexT, IndexP, IndexH})->
     X=triangle(IndexT), 
     Y=pentagonal(IndexP), 
     Z=hexagonal(IndexH),
-    case {X, Y, Z} of
-	{_, _, _} when X > Y -> search({IndexT, IndexP + 1 , IndexH}) ;
-	{_, _, _} when X > Z -> search({IndexT, IndexP, IndexH + 1 }) ;
-	{_, _, _} when X < Y orelse X < Z -> search({IndexT +1, IndexP, IndexH});
-	{_, _, _} when X =:=Y andalso X =:=Z -> {IndexT, IndexP, IndexH};
-	_Else -> io:format("He?")
+    if  X > Y -> search({IndexT, IndexP + 1 , IndexH}) ;
+	X > Z -> search({IndexT, IndexP, IndexH + 1 }) ;
+	X < Y orelse X < Z -> search({IndexT +1, IndexP, IndexH});
+	X =:=Y andalso X =:=Z -> {IndexT, IndexP, IndexH};
+	true -> io:format("He?")
     end.
