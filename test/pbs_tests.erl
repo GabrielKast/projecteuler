@@ -36,4 +36,10 @@ receive_results_test()->
 	    ?assertEqual(17, lists:sum(List))
     end.
 
-    
+get_divisors_test()->
+    ?assertEqual([1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110], pb21:get_divisors(220)),
+    ?assertEqual([1, 2, 4, 71, 142], pb21:get_divisors(284)).
+
+
+factorial_test()->
+    ?assertEqual(5*4*3*2, pb20:factorial(5)).
