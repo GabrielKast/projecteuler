@@ -24,14 +24,6 @@ pb45(Number)->
     {X, Y, Z} = search ({Number, 1, 1}),
     io:format ( "Found for : ~p~n~nNumber is : ~p~n", [{X, Y, Z}, triangle (X)]).
 
-%    Triangle =  triangle (Number),
-%    Pent = pentagonal(Number),
-%    Hexag = hexagonal(Number),
-%    io:format ("#~p : on a T=~p P=~p H=~p~n", [Number, Triangle, Pent, Hexag]),
-%    if Number>300 orelse (Triangle=:=Pent andalso Pent=:= Hexag) ->
-%	    Number;
-%       true -> pb45(Number+1)
-%    end.
 search({IndexT, IndexP, IndexH})->
     X=triangle(IndexT), 
     Y=pentagonal(IndexP), 
@@ -39,6 +31,5 @@ search({IndexT, IndexP, IndexH})->
     if  X > Y -> search({IndexT, IndexP + 1 , IndexH}) ;
 	X > Z -> search({IndexT, IndexP, IndexH + 1 }) ;
 	X < Y orelse X < Z -> search({IndexT +1, IndexP, IndexH});
-	X =:=Y andalso X =:=Z -> {IndexT, IndexP, IndexH};
-	true -> io:format("He?")
+	true -> {IndexT, IndexP, IndexH}
     end.
