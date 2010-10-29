@@ -14,3 +14,7 @@ pb7_test() ->
 %% Check if is_pythagorean seems ok
 pb9_test() ->
     ?assertEqual(true, pb9:is_pythagorean(3, 4, 5)).
+
+%% As  2 exp 15  = 32768 check if result=3+2+7+6+8
+pb16_test()->
+    ?assertEqual (3+2+7+6+8, pb16:pb16(15)).
