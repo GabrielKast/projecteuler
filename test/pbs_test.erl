@@ -3,7 +3,7 @@
 % code:add_path("/usr/lib/erlang/lib/eunit-2.1.4/ebin")
 
 
--module(pbs_tests).
+-module(pbs_test).
 -include_lib("eunit/include/eunit.hrl").
 pb5_test() ->
     ?assertEqual(2520, pb5:pb5(10)).
@@ -18,18 +18,42 @@ pb9_test() ->
 
 %% checks the sample given by pb10 : sum of prime from 2 to 10 is 2+3+5+7=17
 pb10_test()->
-    ?assertEqual(17, pb10:pb10(10)),
-    ?assertEqual(142913828922,  pb10:pb10()),
-    ?assertEqual(142913828922,  pb10:pb10_v2(2000000)) .
+    {
+      timeout, 20, 
+      fun() ->
+	      ?assertEqual(17, pb10:pb10(10)),
+	      ?assertEqual(142913828922,  pb10:pb10()) end
+    }.
 
+pb10_v2_test()->
+    {
+      timeout, 15,
+      fun() ->
+	      ?assertEqual(142913828922,  pb10:pb10_v2(2000000))
+      end
+    }.
+pb10_v3_test()->
+    {
+      timeout, 20, 
+      fun() ->
+	      ?assertEqual(142913828922,  pb10:pb10_v3(2000000))
+      end
+    }.
+pb10_v4_test()->
+    {
+      timeout, 20, 
+      fun() ->
+	      ?assertEqual(142913828922,  pb10:pb10_v4(2000000))
+      end
+    }.
 receive_results_test()->
     Pid_acc = spawn(pb10, receive_results, [self(), [], 0, 0] ),
     Pid_acc ! {totalnumber, 5},
-    Pid_acc ! {isprime, 2},
-    Pid_acc ! {isprime, 3},
-    Pid_acc ! {isprime, 5},
-    Pid_acc ! {isprime, 7},
-    Pid_acc ! {notprime, 9},
+    Pid_acc ! {true, 2},
+    Pid_acc ! {true, 3},
+    Pid_acc ! {true, 5},
+    Pid_acc ! {true, 7},
+    Pid_acc ! {false, 9},
     receive
 	List ->
 	    io:format("Reception de la liste : ~p~n", [List]),
@@ -43,3 +67,4 @@ get_divisors_test()->
 
 factorial_test()->
     ?assertEqual(5*4*3*2, pb20:factorial(5)).
+

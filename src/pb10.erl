@@ -110,14 +110,14 @@ pool_manager(PidInit, NbOfProcess, ListBuffer, Pid_reduce) ->
 		    pool_manager(PidInit, NbOfProcess -1+1 , Tail, Pid_reduce);
 		%% Nothing to do
 		_ -> %% io:format("Nothing to do~n"),
-		     pool_manager(PidInit, NbOfProcess , ListBuffer, Pid_reduce)
+		    pool_manager(PidInit, NbOfProcess , ListBuffer, Pid_reduce)
 	    end;
 	%% Nothing to do... But wait for a new process
 	{checkprime}   -> %% io:format("Still too much process~n"),
-			  pool_manager(PidInit, NbOfProcess -1 , ListBuffer, Pid_reduce);
-
+	    pool_manager(PidInit, NbOfProcess -1 , ListBuffer, Pid_reduce);
+	
 	Other   -> io:format("What is ~p ? ~n", [Other]),
-			  pool_manager(PidInit, NbOfProcess -1 , ListBuffer, Pid_reduce)	     end.
+		   pool_manager(PidInit, NbOfProcess -1 , ListBuffer, Pid_reduce)	     end.
 
 for_each_parallel(Number, Limit, Pid_pool, Pid_reduce, TotalNumber)->
     if Number =< Limit ->

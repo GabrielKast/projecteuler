@@ -1,0 +1,12 @@
+{application, projecteuler,
+ [
+  {description, "Project Euler from www.projecteurler.com"},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { projecteuler_app, []}},
+  {env, []}
+ ]}.
