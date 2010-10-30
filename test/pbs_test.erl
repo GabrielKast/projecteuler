@@ -76,3 +76,27 @@ pb14_test()->
     Z=pb14:sequenceSize(13),
     ?assertEqual(10, Z),
     ?assertEqual(9, pb14:pb14(13)).
+
+integer_to_litteral_test() ->
+    ?assertEqual("two hundred", pb17:integer_to_litteral(200)),
+    ?assertEqual("five hundred", pb17:integer_to_litteral(500)),
+    ?assertEqual("one thousand", pb17:integer_to_litteral(1000)),
+    ?assertEqual("one thousand three hundred", pb17:integer_to_litteral(1300)),
+    ?assertEqual("seven thousand four hundred", pb17:integer_to_litteral(7400)),
+    ?assertEqual("seven hundred and twenty", pb17:integer_to_litteral(720)),
+    ?assertEqual("seven hundred and twenty-eight", pb17:integer_to_litteral(728)),
+    ?assertEqual("nine hundred and four", pb17:integer_to_litteral(904)),
+    ?assertEqual("twenty-one", pb17:integer_to_litteral(21)),
+    ?assertEqual("eighty", pb17:integer_to_litteral(80)),
+    ?assertEqual("eight", pb17:integer_to_litteral(8)),
+    ?assertEqual("one", pb17:integer_to_litteral(1)),
+    ?assertEqual("three hundred and forty-two", pb17:integer_to_litteral(342)),
+    ?assertEqual("one thousand nine hundred and ninety-nine", pb17:integer_to_litteral(1999))
+.
+count_letter_test()->
+    ?assertEqual(length("threehundredandfortytwo"), pb17:count_letter("three hundred and forty-two")),
+    ?assertEqual(3, pb17:count_letter("one")).
+pb17_test() ->
+    ?assertEqual(pb17:count_letter ("one two three four five six seven"), pb17:pb17(7)),
+    ?assertEqual(pb17:count_letter ("one two three four five six seven eight nine ten eleven twelve"), pb17:pb17(12)),
+    ?assertEqual(21124, pb17:pb17()).
