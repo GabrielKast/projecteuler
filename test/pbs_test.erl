@@ -71,3 +71,8 @@ factorial_test()->
 pb8_test()->
     ?assertEqual(5*6*7*8*9, pb8:pb8(123456789)),
     ?assertEqual(7*8*9*8*7, pb8:pb8(123456789870)).
+
+pb14_test()->
+    Z=pb14:sequenceSize(13),
+    ?assertEqual(10, Z),
+    ?assertEqual(9, pb14:pb14(13)).
