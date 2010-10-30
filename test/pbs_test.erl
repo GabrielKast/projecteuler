@@ -68,3 +68,6 @@ get_divisors_test()->
 factorial_test()->
     ?assertEqual(5*4*3*2, pb20:factorial(5)).
 
+pb8_test()->
+    ?assertEqual(5*6*7*8*9, pb8:pb8(123456789)),
+    ?assertEqual(7*8*9*8*7, pb8:pb8(123456789870)).
