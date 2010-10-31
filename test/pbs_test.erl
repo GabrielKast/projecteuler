@@ -17,7 +17,7 @@ pb9_test() ->
     ?assertEqual(true, pb9:is_pythagorean(3, 4, 5)).
 
 %% checks the sample given by pb10 : sum of prime from 2 to 10 is 2+3+5+7=17
-pb10_test()->
+pb10_test_()->
     {
       timeout, 20, 
       fun() ->
@@ -25,27 +25,28 @@ pb10_test()->
 	      ?assertEqual(142913828922,  pb10:pb10()) end
     }.
 
-pb10_v2_test()->
-    {
-      timeout, 15,
-      fun() ->
-	      ?assertEqual(142913828922,  pb10:pb10_v2(2000000))
-      end
-    }.
-pb10_v3_test()->
-    {
-      timeout, 20, 
-      fun() ->
-	      ?assertEqual(142913828922,  pb10:pb10_v3(2000000))
-      end
-    }.
-pb10_v4_test()->
-    {
-      timeout, 20, 
-      fun() ->
-	      ?assertEqual(142913828922,  pb10:pb10_v4(2000000))
-      end
-    }.
+%% pb10_v2_test_()->
+%%     {
+%%       timeout, 15,
+%%       fun() ->
+%% 	      ?assertEqual(142913828922,  pb10:pb10_v2(2000000))
+%%       end
+%%     }.
+%% pb10_v3_test_()->
+%%     {
+%%       timeout, 20, 
+%%       fun() ->
+%% 	      ?assertEqual(142913828922,  pb10:pb10_v3(2000000))
+%%       end
+%%     }.
+%% Too long
+%% pb10_v4_test_()->
+%%     {
+%%       timeout, 20, 
+%%       fun() ->
+%% 	      ?assertEqual(142913828922,  pb10:pb10_v4(2000000))
+%%       end
+%%     }.
 receive_results_test()->
     Pid_acc = spawn(pb10, receive_results, [self(), [], 0, 0] ),
     Pid_acc ! {totalnumber, 5},
@@ -116,3 +117,6 @@ pb25_test()->
 scores_test()->
     ?assertEqual(49714, pb22:getScore("COLIN", 938)),
     ?assertEqual(871198282, pb22:pb22()).
+
+pb40_test()->
+    ?assertEqual(210, pb40:pb40()).
