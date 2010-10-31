@@ -120,3 +120,16 @@ scores_test()->
 
 pb40_test()->
     ?assertEqual(210, pb40:pb40()).
+
+
+isAbundant_test()->
+    ?assertEqual(true, pb23:isAbundant(12)),
+    ?assertEqual(false, pb23:isAbundant(10)).
+
+%% pb23_test_()->
+%%     {
+%%       timeout, 50, 
+%%       fun() ->
+%%     ?assertEqual(12, pb23:pb23())
+%%       end
+%%     }.
