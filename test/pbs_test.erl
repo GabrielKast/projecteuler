@@ -110,5 +110,9 @@ pb13_test()->
     ?assertEqual("5537376230", pb13:pb13()).
 
 pb25_test()->
-    ?assertEqual(12, pb25:pb25(3))
+    ?assertEqual(12, pb25:pb25(3)),
     ?assertEqual(4782, pb25:pb25()).
+
+scores_test()->
+    ?assertEqual(49714, pb22:getScore("COLIN", 938)),
+    ?assertEqual(871198282, pb22:pb22()).
