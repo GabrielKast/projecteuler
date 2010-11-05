@@ -14,7 +14,7 @@
 %%% Created : 31 Oct 2010 by gabriel <gabriel@Surabaya>
 %%%-------------------------------------------------------------------
 -module(pb23).
--export([pb23/0, isAbundant/1, isNotSumOfAbundants/2]).
+-export([pb23/0, pb23_v2/0, isAbundant/1, isNotSumOfAbundants/2]).
 
 pb23()->
     Result=notSumOfTwoAbundant(),
@@ -38,6 +38,37 @@ isNotSumOfAbundants(N, Abundants)->
        true ->	    false;
        _Else ->true
     end.
+
+
+pb23_v2()->
+    NumbersSum=numbersSumOfAbundants(),
+    
+    Result = lists:filter(
+	       fun(Elem)->
+		       case lists:member(Elem, NumbersSum) of 
+			   true -> false;
+			   _Else -> true
+		       end
+	       end, 
+	       lists:seq(1, 28123)),
+    io:format("~n~n~nThe non sum ot 2 abundants : ~p~n~n", [Result]),
+    lists:sum(Result).
+numbersSumOfAbundants()->
+    Abundants = getAbundants(),
+    io:format("Abundants : ~p~n",[Abundants]), 
+    Sums = [X + Y || X <- Abundants,
+	      Y <- Abundants, X+Y < 28123 ],
+    remove_duplicates(Sums).
+
+remove_duplicates([H|T]) ->
+    case lists:member(H, T) of
+	true  -> remove_duplicates(T);
+	false -> [H|remove_duplicates(T)]
+    end;
+remove_duplicates([]) ->
+    [].
+
+
 
 getAbundants()->
     lists:filter(fun(Elem)-> isAbundant(Elem) end, lists:seq(1, 28123)).
