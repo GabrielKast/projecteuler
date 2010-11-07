@@ -12,30 +12,30 @@
 -export([old/3]).
 pb24()->
     pb24("0123456789", 1000000).
-pb24(_List, _Nth)->
-    true.
+pb24(List, Nth)->
+    Result=permutations (List),
+    io:format ("Resultat 1 : ~p~nResultat 2 : ~p~n", 
+	       [lists:nth (Nth, Result), lists:nth (Nth, lists:sort(Result))]).
 permutations(List)->
-    get_permutations(lists:reverse(lists:sort(List)), [], []).
+    get_permutations( lists:reverse(lists:sort(List)), [], []).
 get_permutations(List, Done, Acc)->
-    io:fwrite ("> ~p | ~p | ~p ~n", [List, Done, Acc]),
-    case List of 
-	[] ->
-	    io:fwrite ("Done!:~p~n~n", [Done])	    ,
-	    lists:reverse(Done) | Acc;
-	_ ->
-	      New_acc=lists:map(
-		fun(Elem)->
-			List_filtered = lists:delete(Elem, List),
-			get_permutations (List_filtered, [Elem|Done],  Acc)
-		end, 
-		List)
-	    %%	    Result=[ get_permutations (lists:delete(Elem, List), [Elem|Done],  Acc)   || Elem <- List ],
-	    %%io:fwrite ("Result:~p~n~n", [Result]),	    
-    end.
+    %%io:fwrite ("> ~p | ~p | ~p ~n", [List, Done, Acc]),
+    lists:foldl(
+      fun(Elem, Sum) ->
+	      List_filtered = lists:delete(Elem, List),
+	      case List_filtered of
+		  [] -> [ lists:reverse([Elem|Done]) |Sum];
+		  _ ->
+		      get_permutations (List_filtered, [Elem|Done],  Acc) ++ Sum
+	      end
+      end,
+      Acc, List).
+	%%	    Result=[ get_permutations (lists:delete(Elem, List), [Elem|Done],  Acc)   || Elem <- List ],
+	%%io:fwrite ("Result:~p~n~n", [Result]),	    
 
 old(List, Done, Acc)->
     
-
+    
     case List of 
 	[_|_]->
 	    Result=lists:map(
