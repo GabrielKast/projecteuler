@@ -144,3 +144,8 @@ pb52_is_with_same_digits_test() ->
 
 pb52_test() ->
     ?assertEqual(142857, pb52:pb52()).
+
+
+pb55_is_Lychrel_test()->
+    ?assertEqual(true, pb55:is_Lychrel(10677)),
+    ?assertEqual(true, pb55:is_Lychrel(4994)).
