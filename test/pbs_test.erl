@@ -133,3 +133,14 @@ isAbundant_test()->
 %%     ?assertEqual(12, pb23:pb23())
 %%       end
 %%     }.
+
+
+pb52_is_with_same_digits_test() ->
+    ?assertEqual(true, pb52:is_with_same_digits("12345", "54312")),
+    ?assertEqual(true, pb52:is_with_same_digits("12344", "43412")),
+    ?assertEqual(true, pb52:is_with_same_digits("12345", "12345")),
+    ?assertEqual(false, pb52:is_with_same_digits("12345", "543121")),
+    ?assertEqual(false, pb52:is_with_same_digits("12345", "54322")).
+
+pb52_test() ->
+    ?assertEqual(142857, pb52:pb52()).
