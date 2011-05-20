@@ -1,5 +1,5 @@
 .eunit
 ebin
-*/*.beam
-*/*.*~
+*.beam
+*~
 */*#*
